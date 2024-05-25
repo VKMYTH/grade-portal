@@ -1,51 +1,63 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
+import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import RecentlyGradedCarousel from '@/components/RecentlyGradedCarousel';
+import Classes from '@/components/Classes';
+import NavigationButton from '@/components/NavigationButton';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
+    <ParallaxScrollView>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title">GradePortal</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+      <View style={styles.horizontalLine} />
+      <RecentlyGradedCarousel />
+      <Classes />
+      <View style={styles.horizontalLine} />
+      <NavigationButton
+        title="Transcript"
+        description="View your high school transcript"
+        link="/transcript"
+        imageSrc={require('@/assets/images/transcript-logo.png')}
+      />
+      <NavigationButton
+        title="Assignment Calendar"
+        description="View your past and upcoming assignments for the month"
+        link="/assignmentcalendar"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
+      <NavigationButton
+        title="Class Schedule"
+        description="View your A and B day class schedule"
+        link="/classschedule"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
+      <NavigationButton
+        title="Report Cards"
+        description="View your past report cards from the year"
+        link="/reportcards"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
+      <NavigationButton
+        title="Progress Reports"
+        description="View your past progress reports from the year"
+        link="/progressreports"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
+      <NavigationButton
+        title="Texas STAAR Scores"
+        description="View your Texas STAAR Scores"
+        link="/staarscores"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
+      <NavigationButton
+        title="Graduation Requirements"
+        description="View how many credits you need to graduate"
+        link="/graduationrequirements"
+        imageSrc={require('@/assets/images/logo.png')}
+      />
     </ParallaxScrollView>
   );
 }
@@ -54,17 +66,15 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 0,
+    marginTop: 37,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  horizontalLine: {
+    width: '100%',
+    height: 2,
+    backgroundColor: '#663A82',
+    marginTop: 0,
   },
 });
