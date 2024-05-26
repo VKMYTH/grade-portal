@@ -50,7 +50,7 @@ export default function HomeScreen() {
         title="Texas STAAR Scores"
         description="View your Texas STAAR Scores"
         link="/staarscores"
-        imageSrc={require('@/assets/images/texas-staar-scores.png')}
+        imageSrc={require('@/assets/images/logo.png')}
       />
     </ParallaxScrollView>
   );
