@@ -26,37 +26,31 @@ export default function HomeScreen() {
         title="Assignment Calendar"
         description="View your past and upcoming assignments for the month"
         link="/assignmentcalendar"
-        imageSrc={require('@/assets/images/logo.png')}
+        imageSrc={require('@/assets/images/assignment-calendar-logo.png')}
       />
       <NavigationButton
         title="Class Schedule"
         description="View your A and B day class schedule"
         link="/classschedule"
-        imageSrc={require('@/assets/images/logo.png')}
+        imageSrc={require('@/assets/images/assignment-calendar-logo.png')}
       />
       <NavigationButton
         title="Report Cards"
         description="View your past report cards from the year"
         link="/reportcards"
-        imageSrc={require('@/assets/images/logo.png')}
+        imageSrc={require('@/assets/images/report-cards-logo.png')}
       />
       <NavigationButton
         title="Progress Reports"
         description="View your past progress reports from the year"
         link="/progressreports"
-        imageSrc={require('@/assets/images/logo.png')}
+        imageSrc={require('@/assets/images/report-cards-logo.png')}
       />
       <NavigationButton
         title="Texas STAAR Scores"
         description="View your Texas STAAR Scores"
         link="/staarscores"
-        imageSrc={require('@/assets/images/logo.png')}
-      />
-      <NavigationButton
-        title="Graduation Requirements"
-        description="View how many credits you need to graduate"
-        link="/graduationrequirements"
-        imageSrc={require('@/assets/images/logo.png')}
+        imageSrc={require('@/assets/images/texas-staar-scores.png')}
       />
     </ParallaxScrollView>
   );

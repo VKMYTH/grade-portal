@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   logoPlaceholder: {
-    width: 40,
-    height: 40,
+    width: 33,
+    height: 33,
     marginRight: 16,
+    marginLeft: 8,
   },
   logo: {
     width: '100%',
