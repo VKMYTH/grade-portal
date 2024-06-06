@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList, ImageBackground } from 'react-native';
 import CalendarStrip from 'react-native-calendar-strip';
 import moment from 'moment';
 
@@ -17,17 +17,21 @@ const assignments: Assignment[] = [
 
 const AssignmentCalendarScreen: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [filteredAssignments, setFilteredAssignments] = useState<Assignment[]>([]);
 
-  const renderAssignment = ({ item }: { item: Assignment }) => (
+  useEffect(() => {
+    const assignmentsForSelectedDate = assignments.filter(
+      (assignment) => assignment.date === moment(selectedDate).format('YYYY-MM-DD')
+    );
+    setFilteredAssignments(assignmentsForSelectedDate);
+  }, [selectedDate]);
+
+  const renderAssignment = useCallback(({ item }: { item: Assignment }) => (
     <View style={styles.assignment}>
       <Text style={styles.assignmentTitle}>{item.title}</Text>
       <Text style={styles.assignmentCourse}>{item.course}</Text>
     </View>
-  );
-
-  const assignmentsForSelectedDate = assignments.filter(
-    (assignment) => assignment.date === moment(selectedDate).format('YYYY-MM-DD')
-  );
+  ), []);
 
   const markedDates = useMemo(() => {
     const uniqueDates = Array.from(new Set(assignments.map(assignment => assignment.date)));
@@ -40,8 +44,12 @@ const AssignmentCalendarScreen: React.FC = () => {
     }));
   }, []);
 
-  return (
-    <ScrollView style={styles.container}>
+  const handleDateSelected = useCallback((date: { toDate: () => React.SetStateAction<Date>; }) => {
+    setSelectedDate(date.toDate());
+  }, []);
+
+  const ListHeaderComponent = useMemo(() => (
+    <View>
       <View style={styles.instructionsContainer}>
         <Text style={styles.instructionsText}>
           Welcome to your Assignment Calendar! Here you can view your upcoming assignments highlighted in green. 
@@ -58,32 +66,38 @@ const AssignmentCalendarScreen: React.FC = () => {
         dateNameStyle={{ color: 'white' }}
         highlightDateNumberStyle={{ color: '#B042FF' }}
         highlightDateNameStyle={{ color: '#B042FF' }}
-        onDateSelected={(date) => setSelectedDate(date.toDate())}
+        onDateSelected={handleDateSelected}
         markedDates={markedDates}
+        selectedDate={selectedDate}
       />
-      <View style={styles.assignmentsContainer}>
-        {assignmentsForSelectedDate.length > 0 ? (
-          <FlatList
-            data={assignmentsForSelectedDate}
-            renderItem={renderAssignment}
-            keyExtractor={(item) => item.title}
-          />
-        ) : (
-          <Text style={styles.noAssignmentsText}>No assignments for this date.</Text>
-        )}
-      </View>
-    </ScrollView>
+    </View>
+  ), [markedDates, handleDateSelected, selectedDate]);
+
+  return (
+    <ImageBackground 
+      source={require('@/assets/images/graydbg.jpg')} 
+      style={styles.background} 
+      resizeMode="cover"
+    >
+      <FlatList
+        style={styles.container}
+        data={filteredAssignments}
+        renderItem={renderAssignment}
+        keyExtractor={(item) => item.title}
+        ListHeaderComponent={ListHeaderComponent}
+        ListEmptyComponent={<Text style={styles.noAssignmentsText}>No assignments for this date.</Text>}
+      />
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333333',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   instructionsContainer: {
     padding: 16,
-    backgroundColor: '#444444',
     borderBottomWidth: 1,
     borderBottomColor: '#555555',
   },
@@ -92,15 +106,12 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
   },
-  assignmentsContainer: {
-    flex: 1,
-    padding: 16,
-  },
   assignment: {
     backgroundColor: '#B042FF',
     borderRadius: 8,
     padding: 16,
-    marginVertical: 8,
+    marginVertical: 6,
+    marginHorizontal: 10,
   },
   assignmentTitle: {
     fontSize: 16,
@@ -116,6 +127,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
     marginTop: 20,
+  },
+  background: {
+    flex: 1,
   },
 });
 

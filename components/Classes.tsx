@@ -28,7 +28,7 @@ const Classes = () => {
 
 const styles = StyleSheet.create({
   classesContainer: {
-    backgroundColor: '#B042FF',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     padding: 16,
     borderRadius: 8,
     marginTop: 16,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   periodText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#D5A6E9',
+    color: 'white',
   },
   classNameContainer: {
     backgroundColor: '#2E2E2E',

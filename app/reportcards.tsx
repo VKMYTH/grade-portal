@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 type ReportCardData = {
@@ -97,7 +97,12 @@ const ReportCardsScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ImageBackground 
+      source={require('@/assets/images/graydbg.jpg')} 
+      style={styles.background} 
+      resizeMode="cover"
+    >
+      <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Report Card For Reporting Period</Text>
         <RNPickerSelect
@@ -142,17 +147,18 @@ const ReportCardsScreen: React.FC = () => {
         ))}
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333333', // Purple background
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   header: {
     padding: 10,
-    backgroundColor: '#B042FF', // Lighter purple background
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderBottomWidth: 1,
     borderColor: '#D8BFD8', // Lavender border
     flexDirection: 'row',
@@ -176,7 +182,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   headerRow: {
-    backgroundColor: '#B042FF', // Lighter purple background
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   cell: {
     width: 100, // Adjust the width as necessary
@@ -189,22 +195,25 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: 'center',
     fontWeight: 'bold',
-    color: 'white',
+    color: '#D5A6E9',
   },
   commentSection: {
     padding: 10,
-    backgroundColor: '#B042FF', // Lighter purple background
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderTopWidth: 1,
     borderColor: '#D8BFD8', // Lavender border
   },
   commentHeader: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#D5A6E9',
     marginBottom: 5,
   },
   commentCell: {
     color: 'white',
+  },
+  background: {
+    flex: 1,
   },
 });
 

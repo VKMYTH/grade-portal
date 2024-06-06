@@ -1,9 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, Linking, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Linking, ScrollView, ImageBackground } from 'react-native';
 
 const STAARScoresScreen: React.FC = () => {
   return (
-    <ScrollView style={styles.container}>
+    <ImageBackground 
+      source={require('@/assets/images/graydbg.jpg')} 
+      style={styles.background} 
+      resizeMode="cover"
+    >
+      <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>STAAR Scores</Text>
       </View>
@@ -16,17 +21,18 @@ const STAARScoresScreen: React.FC = () => {
         </Text>
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333333', // Dark background
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   header: {
     padding: 20,
-    backgroundColor: '#B042FF', // Lighter purple background
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderBottomWidth: 2,
     borderColor: '#D8BFD8', // Lavender border
     alignItems: 'center',
@@ -34,11 +40,11 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#D5A6E9',
   },
   content: {
     padding: 20,
-    backgroundColor: '#4B0082', // Indigo background for content
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 10,
     margin: 20,
     alignItems: 'center', // Center align the content
@@ -55,6 +61,9 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontWeight: 'bold',
     textAlign: 'center', // Center align the link text
+  },
+  background: {
+    flex: 1,
   },
 });
 

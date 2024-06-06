@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#B042FF',
-    padding: 10,
-    borderRadius: 8,
-    marginVertical: 0,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 10,
+    marginBottom: 10,
   },
   logoPlaceholder: {
     width: 33,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    color: '#FFFFFF',
+    color: '#D5A6E9',
   },
 });
 
